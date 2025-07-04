@@ -1,0 +1,20 @@
+import openai
+
+# Replace 'YOUR_API_KEY' with your actual OpenAI API key
+openai.api_key = "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"
+
+print("Welcome to your ChatGPT-like bot! Type 'exit' to quit.")
+
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "exit":
+        print("Bot: Goodbye!")
+        break
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # You can use "gpt-4" if your account supports it
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": user_input}
+        ]
+    )
+    print("Bot:", response.choices[0].message['content'].strip())
